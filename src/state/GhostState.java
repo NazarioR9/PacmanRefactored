@@ -4,11 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import event.PacmanEvent;
-import model.Game;
 import model.PacGhost;
-import model.PacmanObservable;
-import model.PacmanObserver;
-import state.AbstractState.State;
 
 public class GhostState extends PacObjectState{
 	private PacGhost ghost;

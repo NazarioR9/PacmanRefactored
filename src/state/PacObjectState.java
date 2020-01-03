@@ -8,8 +8,6 @@ import event.PacmanEvent;
 import model.AbstractPacObject;
 import model.Coordinate;
 import model.Direction;
-import model.Game;
-import model.PacmanObservable;
 import model.PacmanObserver;
 import utilities.Constante;
 

@@ -1,14 +1,8 @@
 package model;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
-
-import utilities.Constante;
-import utilities.Utils;
 import state.AbstractState;
 import state.PacObjectState;
-import state.PacmanState;
+import utilities.Constante;
 
 public abstract class AbstractPacObject {
 	protected Coordinate point; //position on the map

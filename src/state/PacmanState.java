@@ -5,7 +5,6 @@ import java.util.List;
 
 import event.PacmanEvent;
 import model.PacmanObservable;
-import model.PacmanObserver;
 
 public abstract class PacmanState extends PacObjectState{
 	protected static final int TIMEOUT = 50;

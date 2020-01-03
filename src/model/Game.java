@@ -1,15 +1,11 @@
 package model;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import event.PacmanEvent;
 import state.AbstractState.State;
 import state.InvisibleState;
-import state.PacmanState;
 import state.SuperState;
 import utilities.Constante;
 import utilities.Utils;
@@ -21,7 +17,6 @@ public class Game implements PacmanObserver{
 	private int mapIndex;
 	private int nbGhosts;
 	private int width, heigth;
-	private int PAC_START_LIFE;
 	private boolean over5000;
 	private PacmanObservable pacman;
 	private List<PacGhost> ghosts;
@@ -34,7 +29,6 @@ public class Game implements PacmanObserver{
 		score = 0;
 		mapIndex = 0;
 		nbGhosts = 4;
-		PAC_START_LIFE = 3;
 		over5000 = false;
 		pacman = new PacmanObservable(this);
 		ghosts = new ArrayList<PacGhost>();
@@ -52,9 +46,11 @@ public class Game implements PacmanObserver{
 	}
 	
 	public void play() {
-		pacman.move();
-		for(PacGhost ghost: ghosts) {
-			ghost.move();
+		while(!noMoreGome() && !noMoreLife()) {
+			pacman.move();
+			for(PacGhost ghost: ghosts) {
+				ghost.move();
+			}
 		}
 	}
 	

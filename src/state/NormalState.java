@@ -1,9 +1,7 @@
 package state;
 
 import java.awt.Color;
-import java.util.List;
 
-import event.PacmanEvent;
 import model.PacmanObservable;
 
 public class NormalState extends PacmanState{

@@ -1,18 +1,21 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import event.PacmanEvent;
 import model.Game;
+import model.PacmanObserver;
+import utilities.Utils;
 
-public class Gui {
+public class Gui implements PacmanObserver{
 	
 	Game game;
 	JFrame frame;
@@ -34,6 +37,8 @@ public class Gui {
 		component = new Component(g);
 		game = g;
 		
+		game.getPacman().register(this);
+		
 		label.setVisible(true);
 		actualiseLabel();
 		
@@ -52,6 +57,7 @@ public class Gui {
 	public void paint() {
 		actualiseLabel();
 		component.repaint();
+		Utils.sleep(150);
 	}
 	
 	public void actualiseLabel() {
@@ -60,5 +66,10 @@ public class Gui {
 	
 	public void quit() {
 		frame.dispose();
+	}
+
+	@Override
+	public void notify(List<PacmanEvent> events) {
+		paint();
 	}
 }
