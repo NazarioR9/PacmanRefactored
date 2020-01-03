@@ -90,5 +90,13 @@ public class PacmanObservable extends AbstractPacObject{
 	public void resetLife() {
 		life = 3;
 	}
+
+	public int getLife() {
+		return life;
+	}
+	
+	public void addLife() {
+		life++;
+	}
 	
 }

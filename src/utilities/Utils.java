@@ -10,6 +10,14 @@ import model.Coordinate;
 
 
 public class Utils {
+	public static void sleep(int ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static int getRandomNumberInRange(int min, int max) {
 
 		if (min > max) {

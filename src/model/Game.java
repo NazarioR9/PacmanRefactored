@@ -22,6 +22,7 @@ public class Game implements PacmanObserver{
 	private int nbGhosts;
 	private int width, heigth;
 	private int PAC_START_LIFE;
+	private boolean over5000;
 	private PacmanObservable pacman;
 	private List<PacGhost> ghosts;
 	
@@ -34,6 +35,7 @@ public class Game implements PacmanObserver{
 		mapIndex = 0;
 		nbGhosts = 4;
 		PAC_START_LIFE = 3;
+		over5000 = false;
 		pacman = new PacmanObservable(this);
 		ghosts = new ArrayList<PacGhost>();
 		for(int i = 0; i < nbGhosts; i++) {
@@ -96,6 +98,10 @@ public class Game implements PacmanObserver{
 						return;
 					}
 				}
+				if((score >= 5000) && !over5000) {
+					over5000 = true;
+					pacman.addLife();
+				}
 			}
 		}
 	}
@@ -126,6 +132,7 @@ public class Game implements PacmanObserver{
 	public void totalReset() {
 		mapIndex = 0;
 		score = 0;
+		over5000 = false;
 		pacman.resetLife();
 		partialReset();
 		resetMaps();
@@ -136,6 +143,7 @@ public class Game implements PacmanObserver{
 		for(PacGhost ghost: ghosts) {
 			ghost.back2Start();
 		}
+		Utils.sleep(200);
 	}
 
 	private void resetMaps() {

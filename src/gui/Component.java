@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import model.AbstractPacObject;
 import model.Game;
@@ -14,7 +15,7 @@ public class Component extends JComponent{
 	private Game game;
 	private Dimension dimension;
 	private int pixelSize;
-	double scale ,add;
+	double scale, add;
 	Color[] gomesColors;
 	
 	public Component(Game g) {
