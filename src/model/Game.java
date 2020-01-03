@@ -16,7 +16,7 @@ public class Game implements PacmanObserver{
 	private int score;
 	private int mapIndex;
 	private int nbGhosts;
-	private int width, heigth;
+	private int width, height;
 	private boolean over5000;
 	private PacmanObservable pacman;
 	private List<PacGhost> ghosts;
@@ -40,7 +40,7 @@ public class Game implements PacmanObserver{
 		gomesMap = Utils.buildGomeMap(mapIndex);
 		
 		width = blocksMap[0].length;
-		heigth = blocksMap.length;
+		height = blocksMap.length;
 		
 		pacman.register(this);
 	}
@@ -177,8 +177,8 @@ public class Game implements PacmanObserver{
 		return width;
 	}
 
-	public int getHeigth() {
-		return heigth;
+	public int getHeight() {
+		return height;
 	}
 
 	public int getScore() {

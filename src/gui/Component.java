@@ -19,10 +19,10 @@ public class Component extends JComponent{
 	
 	public Component(Game g) {
 		pixelSize = 30;
-		scale = 0.25;
-		add = 0.375;
+		scale = 0.25; //it reduces the gomes' size
+		add = 0.375; //it centers the gomes
 		game = g;
-		dimension = new Dimension(g.getWidth()*pixelSize, g.getHeigth()*pixelSize);
+		dimension = new Dimension(g.getWidth()*pixelSize, g.getHeight()*pixelSize);
 		gomesColors = new Color[]{Color.blue, Color.magenta, Color.orange, Color.green};
 	}
 	
@@ -30,6 +30,7 @@ public class Component extends JComponent{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
+		drawGrid(g);
 		drawBlocks(game.getBlocksMap(), g);
 		drawGomes(game.getGomesMap(), g);
 		
@@ -39,9 +40,22 @@ public class Component extends JComponent{
 		}
 	}
 	
-	public void drawObject(AbstractPacObject obj, Graphics g) {
-		int width = game.getWidth(), heigth = game.getHeigth();
+	public void drawGrid(Graphics g) {
+		int height = (int) dimension.getHeight();
+		int width = (int) dimension.getWidth();
+		int gameHeight = game.getHeight();
+		int gameWidth = game.getWidth();
 		
+		g.setColor(Color.gray);
+		for(int i = 0; i <= gameWidth; i+=1) {
+			g.drawLine(width*i/gameWidth, 0, width*i/gameWidth, height);
+		}
+		for(int i = 0; i <= gameHeight; i+=1) {
+			g.drawLine(0, height*i/gameHeight, width, height*i/gameHeight);
+		}
+	}
+	
+	public void drawObject(AbstractPacObject obj, Graphics g) {		
 		g.setColor(obj.getState().getColor());
 		g.fillOval(obj.getPoint().getX()*pixelSize, obj.getPoint().getY()*pixelSize, pixelSize, pixelSize);
 		

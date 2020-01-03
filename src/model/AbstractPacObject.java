@@ -43,7 +43,7 @@ public abstract class AbstractPacObject {
 	public boolean inBounds(Coordinate p) {
 		 int x = p.getX();
 		 int y = p.getY();
-		return (x >= 0) && (y >= 0) && (x < game.getWidth()) && (y < game.getHeigth());
+		return (x >= 0) && (y >= 0) && (x < game.getWidth()) && (y < game.getHeight());
 	}
 	
 	public boolean collision(Coordinate p) {		
