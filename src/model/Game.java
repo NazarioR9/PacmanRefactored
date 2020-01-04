@@ -36,8 +36,7 @@ public class Game implements PacmanObserver{
 			ghosts.add(new PacGhost(this, i));
 		}
 		
-		blocksMap = Constante.blocksMaps[mapIndex];
-		gomesMap = Utils.buildGomeMap(mapIndex);
+		resetMaps(-1);
 		
 		width = blocksMap[0].length;
 		height = blocksMap.length;
@@ -63,7 +62,6 @@ public class Game implements PacmanObserver{
 				Coordinate c = e.getCoordinate();
 				int value = gomesMap[c.getY()][c.getX()];
 				if(value != 0) {
-					gomesMap[c.getY()][c.getX()] = 0;
 					switch(value){
 						case 1:
 							score += 100;
@@ -83,9 +81,10 @@ public class Game implements PacmanObserver{
 							mapIndex %= Constante.blocksMaps.length;
 							partialReset();
 							int count = howMuchBaseGomes();
-							resetMaps(count, index);
+							resetMaps(count);
 							break;
 					}
+					gomesMap[c.getY()][c.getX()] = 0;
 				}
 				for(PacGhost ghost: ghosts) {
 					if(ghost.getPoint().equals(e.getCoordinate()) && 
@@ -131,7 +130,7 @@ public class Game implements PacmanObserver{
 		over5000 = false;
 		pacman.resetLife();
 		partialReset();
-		resetMaps();
+		resetMaps(-1);
 	}
 	
 	public void partialReset() {
@@ -139,17 +138,11 @@ public class Game implements PacmanObserver{
 		for(PacGhost ghost: ghosts) {
 			ghost.back2Start();
 		}
-		Utils.sleep(200);
-	}
-
-	private void resetMaps() {
-		blocksMap = Utils.clone2DMatrix(Constante.blocksMaps[mapIndex]);
-		gomesMap = Utils.buildGomeMap(mapIndex);
 	}
 	
-	private void resetMaps(int cnt, int index) {
+	private void resetMaps(int cnt) {
 		blocksMap = Utils.clone2DMatrix(Constante.blocksMaps[mapIndex]);
-		gomesMap = Utils.makeGomesForNewMapV2(blocksMap, gomesMap, cnt, mapIndex, index);
+		gomesMap = Utils.makeGomesForNewMapV2(blocksMap, cnt);
 	}
 
 	private int howMuchBaseGomes() {
@@ -158,7 +151,7 @@ public class Game implements PacmanObserver{
 		int cnt = 0;
 		for(int i = 0; i < x; i++) {
 			for(int j = 0; j < y; j++) {
-				if(gomesMap[i][j] == 1) cnt++;
+				if(gomesMap[i][j] != 0) cnt++;
 			}
 		}
 		

@@ -33,7 +33,6 @@ public class Component extends JComponent{
 		drawGrid(g);
 		drawBlocks(game.getBlocksMap(), g);
 		drawGomes(game.getGomesMap(), g);
-		
 		drawObject(game.getPacman(), g);
 		for(PacGhost ghost: game.getPacGhosts()) {
 			drawObject(ghost, g);
@@ -58,7 +57,6 @@ public class Component extends JComponent{
 	public void drawObject(AbstractPacObject obj, Graphics g) {		
 		g.setColor(obj.getState().getColor());
 		g.fillOval(obj.getPoint().getX()*pixelSize, obj.getPoint().getY()*pixelSize, pixelSize, pixelSize);
-		
 	}
 	
 	public void drawBlocks(int[][] map, Graphics g) {

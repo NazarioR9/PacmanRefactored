@@ -54,12 +54,6 @@ public class PacmanObservable extends AbstractPacObject{
 		super.back2Start();
 		direction = Direction.None;
 	}
-
-	@Override
-	public void manage() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void getKey(int key) {
 		if(key == KeyEvent.VK_UP) {direction = Direction.Up;}

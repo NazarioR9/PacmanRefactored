@@ -17,7 +17,6 @@ public abstract class AbstractPacObject {
 	}
 	
 	public abstract void move();
-	public abstract void manage();
 	public abstract AbstractState getState();
 	
 	public Coordinate getPoint() {
@@ -54,16 +53,6 @@ public abstract class AbstractPacObject {
 		return (mat[j][i] == 1) || (direction != Direction.Up && mat[j][i] == 3);
 	}
 	
-	public boolean wraparound(Coordinate p) {
-		for(int i = 0; i < Constante.STATIC_WRAPAROUND.length; i++) {
-			if(p.equals(Constante.STATIC_WRAPAROUND[i])) {
-				point = new Coordinate(Constante.DYNAMIC_WRAPAROUND[(i+1) % 2]);
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public void setPoint(Coordinate coordinate) {
 		point = coordinate;
 	}
